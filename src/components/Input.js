@@ -1,5 +1,6 @@
 import {Component} from "react";
 import React from "react";
+import sendImg from '../img/send.png';
 
 export default class Input extends Component {
   state = {
@@ -24,10 +25,10 @@ export default class Input extends Component {
             onChange={e => this.onChange(e)}
             value={this.state.text}
             type="text"
-            placeholder="Enter your message and press ENTER"
+            placeholder="Message..."
             autoFocus={true}
           />
-          <button>Send</button>
+          <button><img src={sendImg} alt="send" /></button>
         </form>
       </div>
     );
