@@ -3,6 +3,8 @@ import './App.css';
 import logo from './img/chit-chat.png';
 import Messages from "./components/Messages";
 import Input from "./components/Input"
+import styled, { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme, GlobalStyles } from "./components/Themes";
 
 
 function randomName() {
@@ -20,9 +22,11 @@ function randomColor() {
   return '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16);
 }
 
-export default class App extends React.Component {
+const StyledApp = styled.div`
+  color: ${(props) => props.theme.fontColor};
+`;
 
-  
+export default class App extends React.Component {
 
   constructor() {
     super();
@@ -31,7 +35,8 @@ export default class App extends React.Component {
       member: {
         username: randomName(),
         color: randomColor()
-      }
+      },
+      theme: 'light'
     }
 
     this.drone = new window.Scaledrone("kOkDDWd0iu2Z6KV5", {
@@ -65,12 +70,23 @@ export default class App extends React.Component {
     });
   }
 
+  themeToggler = () => {
+    this.state.theme === "light" ? this.setState({theme: 'dark'}) : this.setState({theme: 'light'});
+  };
+
   render() {
     return (
+      <ThemeProvider theme={this.state.theme === "light" ? lightTheme : darkTheme}>
+      <GlobalStyles />
+      <StyledApp>
       <div className="App">
+        <div className="col-header">
         <div className="App-header">
           <img src={logo} alt="Logo" />
+          <button onClick={this.themeToggler}>Light/Dark</button>
         </div>
+        </div>
+        
         <Messages
           messages={this.state.messages}
           currentMember={this.state.member}
@@ -79,6 +95,8 @@ export default class App extends React.Component {
           onSendMessage={this.onSendMessage}
         />
       </div>
+      </StyledApp>
+    </ThemeProvider>
     );
   }
 

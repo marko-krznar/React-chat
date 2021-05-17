@@ -5,17 +5,28 @@
   height: 100vh;
 }
 
-.App-header {
+.col-header {
   background-color: #3e90e3;
   overflow: visible;
   width: 100%;
   text-align: center;
   color: white;
 }
+.App-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
 .App-header img {
   max-height: 100px;
 }
-
+.App-header button {
+  background: #fff;
+  color: #3e90e3;
+  padding: 10px 24px;
+}
 .Messages-list {
   padding: 20px 0;
   max-width: 900px;
