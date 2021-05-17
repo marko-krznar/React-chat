@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import Messages from "./components/Messages";
+import Input from "./components/Input"
+
 
 function randomName() {
   const adjectives = ["autumn", "hidden", "bitter", "misty", "silent", "empty", "dry", "dark", "summer", "icy", "delicate", "quiet", "white", "cool", "spring", "winter", "patient", "twilight", "dawn", "crimson", "wispy", "weathered", "blue", "billowing", "broken", "cold", "damp", "falling", "frosty", "green", "long", "late", "lingering", "bold", "little", "morning", "muddy", "old", "red", "rough", "still", "small", "sparkling", "throbbing", "shy", "wandering", "withered", "wild", "black", "young", "holy", "solitary", "fragrant", "aged", "snowy", "proud", "floral", "restless", "divine", "polished", "ancient", "purple", "lively", "nameless"];
@@ -32,6 +34,15 @@ export default class App extends React.Component {
     }
   }
 
+  onSendMessage = (message) => {
+    const messages = this.state.messages
+    messages.push({
+      text: message,
+      member: this.state.member
+    })
+    this.setState({messages: messages})
+  }
+
   render() {
     return (
       <div className="App">
@@ -39,8 +50,11 @@ export default class App extends React.Component {
           messages={this.state.messages}
           currentMember={this.state.member}
         />
+        <Input
+          onSendMessage={this.onSendMessage}
+        />
       </div>
     );
   }
-  
+
 }
