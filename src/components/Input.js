@@ -13,8 +13,13 @@ export default class Input extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+    const inputTrim = this.state.text.trim();
+    if (inputTrim.length < 1) {
+      return;
+    }
+    this.props.onSendMessage(inputTrim);
     this.setState({text: ""});
-    this.props.onSendMessage(this.state.text);
+    
   }
 
   render() {

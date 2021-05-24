@@ -46,6 +46,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+
     this.drone.on('open', error => {
       if (error) {
         return console.error(error);
