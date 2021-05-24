@@ -1,3 +1,8 @@
+body {
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .App {
   display: flex;
   flex-direction: column;
@@ -11,6 +16,7 @@
   width: 100%;
   text-align: center;
   color: white;
+  box-sizing: border-box;
 }
 .App-header {
   display: flex;
@@ -127,4 +133,15 @@ button {
   border: none;
   border-radius: 25px;
   margin-left: 10px;
+}
+input, form {
+  box-sizing: border-box;
+}
+
+/* Mobile resolution */
+
+@media only screen and (max-width: 900px) {
+  .col-header, .Input {
+    padding: 0 10px;
+  }
 }
