@@ -3,9 +3,9 @@ import './App.css';
 import logo from './img/chit-chat.png';
 import Messages from "./components/Messages";
 import Input from "./components/Input"
-import styled, { ThemeProvider } from "styled-components";
-import { lightTheme, darkTheme, GlobalStyles } from "./components/Themes";
-
+import { ThemeProvider } from 'styled-components';
+import { lightTheme, darkTheme } from './components/Themes';
+import { GlobalStyles } from './components/Global';
 
 function randomName() {
 
@@ -28,14 +28,6 @@ function backgroundColor() {
   return randomColor;
 }
 
-// function randomColor() {
-//   return '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16);
-// }
-
-const StyledApp = styled.div`
-  color: ${(props) => props.theme.fontColor};
-`;
-
 export default class App extends React.Component {
 
   constructor() {
@@ -44,7 +36,6 @@ export default class App extends React.Component {
       messages: [],
       member: {
         username: randomName(),
-        // color: randomColor(),
         color: backgroundColor()
       },
       theme: 'light'
@@ -81,21 +72,24 @@ export default class App extends React.Component {
       message
     });
   }
-
-  themeToggler = () => {
-    this.state.theme === "light" ? this.setState({theme: 'dark'}) : this.setState({theme: 'light'});
-  };
+  
+  toggleTheme = () => {
+    if (this.state.theme === 'light') {
+      this.setState({theme: 'dark'})
+    } else {
+      this.setState({theme: 'light'});
+    }
+  }
 
   render() {
     return (
-      <ThemeProvider theme={this.state.theme === "light" ? lightTheme : darkTheme}>
+      <ThemeProvider theme={this.state.theme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyles />
-      <StyledApp>
       <div className="App">
         <div className="col-header">
         <div className="App-header">
           <img src={logo} alt="Logo" />
-          <button onClick={this.themeToggler}>Light/Dark</button>
+          <button onClick={this.toggleTheme}>Light/Dark</button>
         </div>
         </div>
         
@@ -107,7 +101,6 @@ export default class App extends React.Component {
           onSendMessage={this.onSendMessage}
         />
       </div>
-      </StyledApp>
     </ThemeProvider>
     );
   }
