@@ -18,9 +18,19 @@ function randomName() {
   return adjective + noun;
 }
 
-function randomColor() {
-  return '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16);
+function backgroundColor() {
+  const backgroundColors = [
+    "red", "green", "blue", "maroon", "navy", "blueviolet", "brown", "cadetblue", "darkblue", "deeppink", "deepskyblue", "dimgray", "dodgerblue", "firebrick", "forestgreen", "mediumblue", "goldenrod", "indianred", "indigo", "lightcoral", "lightsalmon", "lightseagreen", "lightslategray", "lightsteelblue", "limegreen", "mediumorchid", "mediumpurple", "mediumseagreen", "mediumslateblue", "mediumturquoise", "mediumvioletred", "moccasin", "olive", "orchid", "palegreen", "palevioletred", "peru", "plum", "royalblue", "salmon"
+  ]
+
+  const randomColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
+
+  return randomColor;
 }
+
+// function randomColor() {
+//   return '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16);
+// }
 
 const StyledApp = styled.div`
   color: ${(props) => props.theme.fontColor};
@@ -34,7 +44,8 @@ export default class App extends React.Component {
       messages: [],
       member: {
         username: randomName(),
-        color: randomColor()
+        // color: randomColor(),
+        color: backgroundColor()
       },
       theme: 'light'
     }
